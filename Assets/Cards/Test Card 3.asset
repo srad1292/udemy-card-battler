@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13eedf8bed5ca044eb6fd14ee3101f5a, type: 3}
+  m_Name: Test Card 3
+  m_EditorClassIdentifier: 
+  currentHealth: 5
+  attackPower: 5
+  manaCost: 6
+  cardName: Test Card 2
+  cardAction: This is the third card.
+  cardLore: Another card for testing
+  characterSprite: {fileID: 21300000, guid: f8d19457256b6504ebf53c00a38f3294, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 91f263c4e2d827c4fa3cb47b7369c9bf, type: 3}
