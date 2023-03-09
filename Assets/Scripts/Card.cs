@@ -28,13 +28,33 @@ public class Card : MonoBehaviour
     private Vector3 targetPoint;
     private Quaternion targetRotation;
 
+    public bool inHand;
+
+    public int handPosition;
+
+    private HandController handController;
+
     private void Start() {
         SetupCard();
+
+        handController = FindObjectOfType<HandController>();
     }
 
     private void Update() {
         transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+    }
+
+    private void OnMouseOver() {
+        if(inHand) {
+            MoveToPoint(handController.cardPositions[handPosition] + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+        }
+    }
+
+    private void OnMouseExit() {
+        if (inHand) {
+            MoveToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
+        }
     }
 
     public void ChangeCard(CardSO cardSO) {
@@ -64,5 +84,7 @@ public class Card : MonoBehaviour
         targetPoint = destination;
         targetRotation = rotation;
     }
+
+    
 
 }
