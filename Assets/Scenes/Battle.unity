@@ -185,6 +185,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 299479799}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &19807179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1510,6 +1513,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 677756494}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &340986293
 Transform:
   m_ObjectHideFlags: 0
@@ -2270,6 +2276,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 1545055823}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &416857022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5415,7 +5424,7 @@ GameObject:
   - component: {fileID: 750562416}
   - component: {fileID: 750562415}
   - component: {fileID: 750562414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Desktop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6647,6 +6656,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 785610543}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &949176690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7297,6 +7309,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 2019747957}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1020673277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10721,6 +10736,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 127424131}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1500220893
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11764,6 +11782,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 247542553}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1612342881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12355,6 +12376,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 892619657}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1694247909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15783,6 +15807,9 @@ MonoBehaviour:
   backgroundArt: {fileID: 203569090}
   inHand: 0
   handPosition: 0
+  desktopLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &2053343883
 Transform:
   m_ObjectHideFlags: 0

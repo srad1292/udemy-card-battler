@@ -28,38 +28,19 @@ public class Card : MonoBehaviour
     private Vector3 targetPoint;
     private Quaternion targetRotation;
 
+    private HandController handController;
     public bool inHand;
-
     public int handPosition;
 
-    private HandController handController;
+    private bool isSelected;
+    private Collider myCollider;
+    public LayerMask desktopLayer;
 
     private void Start() {
         SetupCard();
 
         handController = FindObjectOfType<HandController>();
-    }
-
-    private void Update() {
-        transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-    }
-
-    private void OnMouseOver() {
-        if(inHand) {
-            MoveToPoint(handController.cardPositions[handPosition] + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
-        }
-    }
-
-    private void OnMouseExit() {
-        if (inHand) {
-            MoveToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
-        }
-    }
-
-    public void ChangeCard(CardSO cardSO) {
-        this.cardSO = cardSO;
-        SetupCard();
+        myCollider = GetComponent<Collider>();
     }
 
     public void SetupCard() {
@@ -78,6 +59,53 @@ public class Card : MonoBehaviour
         characterArt.sprite = cardSO.characterSprite;
         backgroundArt.sprite = cardSO.backgroundSprite;
 
+    }
+
+    private void Update() {
+        transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+
+        if(isSelected) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100f, desktopLayer)) {
+                MoveToPoint(hit.point + new Vector3(0,2f,0), Quaternion.identity);
+            }
+
+            if(Input.GetMouseButtonDown(1)) {
+                ReturnToHand();
+            }
+        }
+    }
+
+    private void ReturnToHand() {
+        MoveToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
+        isSelected = false;
+        myCollider.enabled = true;
+    }
+
+    private void OnMouseOver() {
+        if(inHand) {
+            MoveToPoint(handController.cardPositions[handPosition] + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+        }
+    }
+
+    private void OnMouseExit() {
+        if (inHand) {
+            MoveToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
+        }
+    }
+
+    private void OnMouseDown() {
+        if (inHand) {
+            isSelected = true;
+            myCollider.enabled = false;
+        }
+    }
+
+    public void ChangeCard(CardSO cardSO) {
+        this.cardSO = cardSO;
+        SetupCard();
     }
 
     public void MoveToPoint(Vector3 destination, Quaternion rotation) {
