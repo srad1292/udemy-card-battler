@@ -12,6 +12,9 @@ public class Card : MonoBehaviour
     public int currentHealth;
     public int manaCost;
 
+    public float moveSpeed = 5f;
+    public float rotateSpeed = 540f;
+
     public TMP_Text nameText;
     public TMP_Text actionText;
     public TMP_Text loreText;
@@ -22,8 +25,16 @@ public class Card : MonoBehaviour
     public Image characterArt;
     public Image backgroundArt;
 
+    private Vector3 targetPoint;
+    private Quaternion targetRotation;
+
     private void Start() {
         SetupCard();
+    }
+
+    private void Update() {
+        transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
     }
 
     public void ChangeCard(CardSO cardSO) {
@@ -47,6 +58,11 @@ public class Card : MonoBehaviour
         characterArt.sprite = cardSO.characterSprite;
         backgroundArt.sprite = cardSO.backgroundSprite;
 
+    }
+
+    public void MoveToPoint(Vector3 destination, Quaternion rotation) {
+        targetPoint = destination;
+        targetRotation = rotation;
     }
 
 }
