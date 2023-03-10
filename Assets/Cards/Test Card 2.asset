@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 5
   attackPower: 5
-  manaCost: 6
+  manaCost: 4
   cardName: Test Card 2
   cardAction: This is the second card.
   cardLore: Another card for testing

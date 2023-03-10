@@ -172,7 +172,7 @@ MonoBehaviour:
   cardSO: {fileID: 11400000, guid: 2f7776b21414bf24fb2b9b58777d7d3a, type: 2}
   attackPower: 0
   currentHealth: 0
-  manaCost: 0
+  manaCost: 3
   moveSpeed: 5
   rotateSpeed: 540
   nameText: {fileID: 528854023}
@@ -4277,6 +4277,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590569378}
   m_CullTransparentMesh: 1
+--- !u!1 &600712328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600712330}
+  - component: {fileID: 600712329}
+  m_Layer: 0
+  m_Name: Battle Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600712329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600712328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31bffc6cb9841e41be9439f260cf2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingMana: 4
+  maxMana: 12
+  playerMana: 0
+--- !u!4 &600712330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600712328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &608296611
 GameObject:
   m_ObjectHideFlags: 0
@@ -7085,7 +7132,7 @@ MonoBehaviour:
   cardSO: {fileID: 11400000, guid: dad7346812e582d479114d249f1ec1e6, type: 2}
   attackPower: 0
   currentHealth: 0
-  manaCost: 0
+  manaCost: 2
   moveSpeed: 5
   rotateSpeed: 540
   nameText: {fileID: 1441798905}
@@ -7741,7 +7788,7 @@ MonoBehaviour:
   cardSO: {fileID: 11400000, guid: ae17ddabd5eb53646916c44525d53031, type: 2}
   attackPower: 0
   currentHealth: 0
-  manaCost: 0
+  manaCost: 7
   moveSpeed: 5
   rotateSpeed: 540
   nameText: {fileID: 1331713076}
@@ -11200,7 +11247,7 @@ MonoBehaviour:
   cardSO: {fileID: 11400000, guid: dad7346812e582d479114d249f1ec1e6, type: 2}
   attackPower: 0
   currentHealth: 0
-  manaCost: 0
+  manaCost: 5
   moveSpeed: 5
   rotateSpeed: 540
   nameText: {fileID: 499322756}
@@ -12249,7 +12296,7 @@ MonoBehaviour:
   cardSO: {fileID: 11400000, guid: ae17ddabd5eb53646916c44525d53031, type: 2}
   attackPower: 0
   currentHealth: 0
-  manaCost: 0
+  manaCost: 4
   moveSpeed: 5
   rotateSpeed: 540
   nameText: {fileID: 694569540}
@@ -12846,7 +12893,7 @@ MonoBehaviour:
   cardSO: {fileID: 11400000, guid: 2f7776b21414bf24fb2b9b58777d7d3a, type: 2}
   attackPower: 0
   currentHealth: 0
-  manaCost: 0
+  manaCost: 6
   moveSpeed: 5
   rotateSpeed: 540
   nameText: {fileID: 2095962329}

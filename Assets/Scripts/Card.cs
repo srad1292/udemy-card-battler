@@ -89,12 +89,15 @@ public class Card : MonoBehaviour
                 if(Physics.Raycast(ray, out hit, 100f, placementLayer)) {
                     CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
                     if(selectedPoint.activeCard == null && selectedPoint.isPlayerPoint) {
-                        selectedPoint.activeCard = this;
-                        assignedPoint = selectedPoint;
-                        MoveToPoint(selectedPoint.transform.position, Quaternion.identity);
-                        inHand = false;
-                        isSelected = false;
-                        handController.RemoveCardFromHand(this);
+                        if(BattleController.Instance.playerMana >= manaCost) {
+                            PlaceCard(selectedPoint);
+                            isSelected = false;
+                            RemoveFromHand();
+                            BattleController.Instance.SpendPlayerMana(manaCost);
+                        } else {
+                            ReturnToHand();
+                        }
+                        
                     } else {
                         ReturnToHand();
                     }
@@ -104,6 +107,17 @@ public class Card : MonoBehaviour
             }
         }
         justPressed = false;
+    }
+
+    private void PlaceCard(CardPlacePoint selectedPoint) {
+        selectedPoint.activeCard = this;
+        assignedPoint = selectedPoint;
+        MoveToPoint(selectedPoint.transform.position, Quaternion.identity);
+    }
+
+    private void RemoveFromHand() {
+        inHand = false;
+        handController.RemoveCardFromHand(this);
     }
 
     private void ReturnToHand() {
