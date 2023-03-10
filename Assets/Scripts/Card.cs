@@ -35,6 +35,11 @@ public class Card : MonoBehaviour
     private bool isSelected;
     private Collider myCollider;
     public LayerMask desktopLayer;
+    public LayerMask placementLayer;
+
+    private bool justPressed = false;
+
+    private CardPlacePoint assignedPoint;
 
     private void Start() {
         SetupCard();
@@ -75,7 +80,30 @@ public class Card : MonoBehaviour
             if(Input.GetMouseButtonDown(1)) {
                 ReturnToHand();
             }
+
+            // OnMouseDown picks up card
+            // Input in Update fires after OnMouseDown
+            // Need to toggle justPressed 
+            // Which will allow the first click to pick it up without returning to hand
+            if(Input.GetMouseButtonDown(0) && !justPressed) {
+                if(Physics.Raycast(ray, out hit, 100f, placementLayer)) {
+                    CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
+                    if(selectedPoint.activeCard == null && selectedPoint.isPlayerPoint) {
+                        selectedPoint.activeCard = this;
+                        assignedPoint = selectedPoint;
+                        MoveToPoint(selectedPoint.transform.position, Quaternion.identity);
+                        inHand = false;
+                        isSelected = false;
+                        handController.RemoveCardFromHand(this);
+                    } else {
+                        ReturnToHand();
+                    }
+                } else {
+                    ReturnToHand();
+                }
+            }
         }
+        justPressed = false;
     }
 
     private void ReturnToHand() {
@@ -98,6 +126,7 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown() {
         if (inHand) {
+            justPressed = true;
             isSelected = true;
             myCollider.enabled = false;
         }

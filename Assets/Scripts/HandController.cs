@@ -16,11 +16,7 @@ public class HandController : MonoBehaviour
         SetCardPositionsInHand();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void SetCardPositionsInHand() {
         cardPositions.Clear();
@@ -36,5 +32,10 @@ public class HandController : MonoBehaviour
             cardsInHand[idx].inHand = true;
             cardsInHand[idx].handPosition = idx;
         }
+    }
+
+    public void RemoveCardFromHand(Card cardToRemove) {
+        cardsInHand.Remove(cardToRemove);
+        SetCardPositionsInHand();
     }
 }
