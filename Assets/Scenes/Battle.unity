@@ -384,8 +384,8 @@ Transform:
   - {fileID: 1937861516}
   - {fileID: 467251704}
   - {fileID: 760082504}
-  m_Father: {fileID: 1730754976}
-  m_RootOrder: 1
+  m_Father: {fileID: 1890427794}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &467251703
 GameObject:
@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf248efbf428844faaec600e3bd2358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeCard: {fileID: 0}
+  activeCard: {fileID: 3320549082865553890}
   isPlayerPoint: 0
 --- !u!65 &582216935
 BoxCollider:
@@ -1203,6 +1203,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeCard: {fileID: 0}
   isPlayerPoint: 1
+--- !u!114 &789265332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589009623895225551, guid: a59d5a279765abc40b46c1a9842f22e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 715930417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c2fbff9190325439c04e87d9fe1ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &803028033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,8 +1506,8 @@ Transform:
   - {fileID: 582216933}
   - {fileID: 2058219710}
   - {fileID: 374891841}
-  m_Father: {fileID: 1730754976}
-  m_RootOrder: 2
+  m_Father: {fileID: 1890427794}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878409215
 GameObject:
@@ -1911,6 +1923,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 987291127}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &987291130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589009623895225551, guid: a59d5a279765abc40b46c1a9842f22e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 987291127}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c2fbff9190325439c04e87d9fe1ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1077185785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,8 +2615,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 750562417}
-  - {fileID: 383160697}
-  - {fileID: 816767274}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2810,6 +2832,7 @@ Transform:
   - {fileID: 600712330}
   - {fileID: 1857514703}
   - {fileID: 2111064006}
+  - {fileID: 1890427794}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2859,7 +2882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf248efbf428844faaec600e3bd2358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeCard: {fileID: 0}
+  activeCard: {fileID: 789265332}
   isPlayerPoint: 0
 --- !u!65 &1882508304
 BoxCollider:
@@ -2926,6 +2949,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1890427793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890427794}
+  - component: {fileID: 1890427795}
+  m_Layer: 0
+  m_Name: Card Points Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890427794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890427793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 383160697}
+  - {fileID: 816767274}
+  m_Father: {fileID: 1857911717}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1890427795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890427793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69c36918f6948a4786460fe1640c2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCardPoints:
+  - {fileID: 1167432687}
+  - {fileID: 1801365259}
+  - {fileID: 1937861518}
+  - {fileID: 467251707}
+  - {fileID: 760082507}
+  enemyCardPoints:
+  - {fileID: 622056752}
+  - {fileID: 1882508303}
+  - {fileID: 582216934}
+  - {fileID: 2058219711}
+  - {fileID: 374891842}
+  timeBetweenAttacks: 0.3
 --- !u!1001 &1933655876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3197,7 +3279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf248efbf428844faaec600e3bd2358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeCard: {fileID: 0}
+  activeCard: {fileID: 987291130}
   isPlayerPoint: 0
 --- !u!65 &2058219712
 BoxCollider:
@@ -3425,3 +3507,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3320549082865553887}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3320549082865553890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589009623895225551, guid: a59d5a279765abc40b46c1a9842f22e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3320549082865553887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c2fbff9190325439c04e87d9fe1ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

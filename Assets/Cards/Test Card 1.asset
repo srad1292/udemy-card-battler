@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13eedf8bed5ca044eb6fd14ee3101f5a, type: 3}
   m_Name: Test Card 1
   m_EditorClassIdentifier: 
-  currentHealth: 2
+  currentHealth: 3
   attackPower: 1
   manaCost: 3
   cardName: Test Card 1

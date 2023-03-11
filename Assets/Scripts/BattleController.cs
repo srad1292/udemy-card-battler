@@ -55,7 +55,7 @@ public class BattleController : MonoBehaviour {
                 TransitionToPlayerActive();
                 break;
             case TurnOrder.PlayerCardAttacks:
-                AdvanceTurn();
+                TransitionToPlayerAttack();
                 break;
             case TurnOrder.EnemyActive:
                 AdvanceTurn();
@@ -77,6 +77,10 @@ public class BattleController : MonoBehaviour {
         }
         RefillPlayerMana();
         DeckController.Instance.DrawMultipleCards(cardsToDrawPerTurn);
+    }
+
+    private void TransitionToPlayerAttack() {
+        CardPointsController.Instance.PlayerAttack();
     }
 
     public void EndPlayerTurn() {

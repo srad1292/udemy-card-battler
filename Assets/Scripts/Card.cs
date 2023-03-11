@@ -61,9 +61,7 @@ public class Card : MonoBehaviour
         currentHealth = cardSO.currentHealth;
         manaCost = cardSO.manaCost;
 
-        attackPowerText.SetText(attackPower.ToString());
-        currentHealthText.SetText(currentHealth.ToString());
-        manaCostText.SetText(manaCost.ToString());
+        UpdateCardDisplay();
 
         nameText.SetText(cardSO.cardName);
         actionText.SetText(cardSO.cardAction);
@@ -165,6 +163,21 @@ public class Card : MonoBehaviour
         targetRotation = rotation;
     }
 
+    public void DamageCard(int damageAmount) {
+        currentHealth -= damageAmount;
+        UpdateCardDisplay();
+        if (currentHealth <= 0 ) {
+            currentHealth = 0;
+            assignedPoint.activeCard = null;
+            Destroy(gameObject);
+        }
+    }
+
+    public void UpdateCardDisplay() {
+        attackPowerText.SetText(attackPower.ToString());
+        currentHealthText.SetText(currentHealth.ToString());
+        manaCostText.SetText(manaCost.ToString());
+    }
     
 
 }
