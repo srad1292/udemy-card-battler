@@ -86,7 +86,7 @@ public class Card : MonoBehaviour
             // Need to toggle justPressed 
             // Which will allow the first click to pick it up without returning to hand
             if(Input.GetMouseButtonDown(0) && !justPressed) {
-                if(Physics.Raycast(ray, out hit, 100f, placementLayer)) {
+                if(Physics.Raycast(ray, out hit, 100f, placementLayer) && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
                     CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
                     if(selectedPoint.activeCard == null && selectedPoint.isPlayerPoint) {
                         if(BattleController.Instance.playerMana >= manaCost) {
@@ -104,7 +104,7 @@ public class Card : MonoBehaviour
                     }
                 } else {
                     ReturnToHand();
-                }
+                } 
             }
         }
         justPressed = false;
@@ -140,7 +140,7 @@ public class Card : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        if (inHand) {
+        if (inHand && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
             justPressed = true;
             isSelected = true;
             myCollider.enabled = false;
