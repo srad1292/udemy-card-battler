@@ -10,6 +10,18 @@ public class HandController : MonoBehaviour
     public Transform maxPos;
     public List<Vector3> cardPositions = new List<Vector3>();
 
+
+    public static HandController Instance;
+
+    private void Awake() {
+        if (Instance != null && Instance == this) {
+            Destroy(this);
+        }
+        else {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +48,11 @@ public class HandController : MonoBehaviour
 
     public void RemoveCardFromHand(Card cardToRemove) {
         cardsInHand.Remove(cardToRemove);
+        SetCardPositionsInHand();
+    }
+
+    public void AddCardToHand(Card cardToAdd) {
+        cardsInHand.Add(cardToAdd);
         SetCardPositionsInHand();
     }
 }

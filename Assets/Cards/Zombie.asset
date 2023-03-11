@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13eedf8bed5ca044eb6fd14ee3101f5a, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  currentHealth: 1
+  attackPower: 2
+  manaCost: 3
+  cardName: Zombie
+  cardAction: Capture a card if it kills it and you have an open space.
+  cardLore: Yea, it's called a zombie...
+  characterSprite: {fileID: 21300000, guid: 28f2e3bc10aa25b4a8b9a79e5df381fd, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 051b6f6c81b57ac4a9ef7f65b46ae866, type: 3}
