@@ -11,6 +11,10 @@ public class DeckController : MonoBehaviour
 
     public Card cardToSpawn;
 
+    public int drawCardCost = 2;
+
+    public float waitBetweenDrawingCards = 0.25f;
+
 
     private void Awake() {
         if (Instance != null && Instance == this) {
@@ -23,12 +27,6 @@ public class DeckController : MonoBehaviour
 
     private void Start() {
         SetupDeck();
-    }
-
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.T)) {
-            DrawCardToHand();
-        }
     }
 
     public void SetupDeck() {
@@ -58,4 +56,27 @@ public class DeckController : MonoBehaviour
         HandController.Instance.AddCardToHand(newCard);
     }
 
+
+    public void DrawCardWithMana() {
+        if (BattleController.Instance.playerMana < drawCardCost) {
+            UIController.Instance.ShowManaWarning();
+            UIController.Instance.HideDrawButton();
+        }
+        else {
+            DrawCardToHand();
+            BattleController.Instance.SpendPlayerMana(drawCardCost);
+        }
+    }
+
+    public void DrawMultipleCards(int amountToDraw) {
+        StartCoroutine(DrawMultipleCo(amountToDraw));
+    }
+
+    IEnumerator DrawMultipleCo(int amountToDraw) {
+        for (int idx = 0; idx < amountToDraw; idx++) {
+            DrawCardToHand();
+            yield return new WaitForSeconds(waitBetweenDrawingCards);
+
+        }
+    }
 }

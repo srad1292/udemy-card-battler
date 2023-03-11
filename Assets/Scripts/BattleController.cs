@@ -11,6 +11,7 @@ public class BattleController : MonoBehaviour
     public int startingMana = 4;
     public int maxMana = 12;
     public int playerMana;
+    public int startCardAmount = 5;
 
     private void Awake() {
         if(Instance != null && Instance != this) {
@@ -23,6 +24,8 @@ public class BattleController : MonoBehaviour
     private void Start() {
         playerMana = startingMana;
         UIController.Instance.SetPlayerManaText(playerMana);
+
+        DeckController.Instance.DrawMultipleCards(startCardAmount);
     }
 
     public void SpendPlayerMana(int amount) {
