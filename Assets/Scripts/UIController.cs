@@ -15,6 +15,8 @@ public class UIController : MonoBehaviour
     private float manaWarningCounter;
 
     public GameObject drawCardButton;
+    public GameObject endTurnButton;
+
 
     private void Awake() {
         if(Instance != null && Instance==this) {
@@ -49,5 +51,9 @@ public class UIController : MonoBehaviour
 
     public void DrawCard() {
         DeckController.Instance.DrawCardWithMana();
+    }
+
+    public void EndPlayerTurn() {
+        BattleController.Instance.EndPlayerTurn();
     }
 }
