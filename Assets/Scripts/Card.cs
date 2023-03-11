@@ -8,6 +8,8 @@ public class Card : MonoBehaviour
 {
     public CardSO cardSO;
 
+    public bool isPlayer;
+
     public int attackPower;
     public int currentHealth;
     public int manaCost;
@@ -39,9 +41,15 @@ public class Card : MonoBehaviour
 
     private bool justPressed = false;
 
-    private CardPlacePoint assignedPoint;
+    public CardPlacePoint assignedPoint;
 
     private void Start() {
+        if(targetPoint == Vector3.zero) { 
+            targetPoint = transform.position;
+            targetRotation = transform.rotation;
+        }
+
+
         SetupCard();
 
         handController = FindObjectOfType<HandController>();
@@ -73,11 +81,11 @@ public class Card : MonoBehaviour
         if(isSelected) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100f, desktopLayer)) {
+            if (Physics.Raycast(ray, out hit, 100f, desktopLayer) && isPlayer) {
                 MoveToPoint(hit.point + new Vector3(0,2f,0), Quaternion.identity);
             }
 
-            if(Input.GetMouseButtonDown(1)) {
+            if(Input.GetMouseButtonDown(1) && isPlayer) {
                 ReturnToHand();
             }
 
@@ -85,7 +93,7 @@ public class Card : MonoBehaviour
             // Input in Update fires after OnMouseDown
             // Need to toggle justPressed 
             // Which will allow the first click to pick it up without returning to hand
-            if(Input.GetMouseButtonDown(0) && !justPressed) {
+            if(Input.GetMouseButtonDown(0) && !justPressed && isPlayer) {
                 if(Physics.Raycast(ray, out hit, 100f, placementLayer) && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
                     CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
                     if(selectedPoint.activeCard == null && selectedPoint.isPlayerPoint) {
@@ -128,19 +136,19 @@ public class Card : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if(inHand) {
+        if(inHand && isPlayer) {
             MoveToPoint(handController.cardPositions[handPosition] + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
         }
     }
 
     private void OnMouseExit() {
-        if (inHand) {
+        if (inHand && isPlayer) {
             MoveToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
         }
     }
 
     private void OnMouseDown() {
-        if (inHand && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
+        if (inHand && isPlayer && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
             justPressed = true;
             isSelected = true;
             myCollider.enabled = false;
