@@ -22,9 +22,11 @@ public class BattleController : MonoBehaviour
 
     private void Start() {
         playerMana = startingMana;
+        UIController.Instance.SetPlayerManaText(playerMana);
     }
 
     public void SpendPlayerMana(int amount) {
         playerMana = Math.Max(playerMana-amount, 0);
+        UIController.Instance.SetPlayerManaText(playerMana);
     }
 }

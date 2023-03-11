@@ -95,6 +95,7 @@ public class Card : MonoBehaviour
                             RemoveFromHand();
                             BattleController.Instance.SpendPlayerMana(manaCost);
                         } else {
+                            UIController.Instance.ShowManaWarning();
                             ReturnToHand();
                         }
                         
