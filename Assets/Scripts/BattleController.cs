@@ -13,7 +13,7 @@ public class BattleController : MonoBehaviour {
 
     public enum TurnOrder {PlayerActive, PlayerCardAttacks, EnemyActive, EnemyCardAttacks };
     public TurnOrder currentPhase;
-
+    public Transform discardPoint;
 
     private int currentPlayerMaxMana;
 

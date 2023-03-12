@@ -33,7 +33,9 @@ public class CardPointsController : MonoBehaviour
                 if (enemyCardPoints[idx].activeCard != null) {
                     // Attack enemy card
                     enemyCardPoints[idx].activeCard.DamageCard(playerCardPoints[idx].activeCard.attackPower);
-                } else {
+                    playerCardPoints[idx].activeCard.animator.SetTrigger("Attack");
+                }
+                else {
                     // Attack opponent
                 }
 
@@ -42,7 +44,26 @@ public class CardPointsController : MonoBehaviour
             }
         }
 
+        CheckAssignedCards();
         BattleController.Instance.AdvanceTurn();
+    }
+
+    public void CheckAssignedCards() {
+        foreach(CardPlacePoint point in playerCardPoints) {
+            if (point.activeCard != null) {
+                if (point.activeCard.currentHealth <= 0) {
+                    point.activeCard = null;
+                }
+            }
+        }
+
+        foreach (CardPlacePoint point in enemyCardPoints) {
+            if(point.activeCard != null) {
+                if(point.activeCard.currentHealth <= 0) {
+                    point.activeCard = null;
+                }
+            }
+        }
     }
     
 }

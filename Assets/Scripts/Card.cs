@@ -43,6 +43,8 @@ public class Card : MonoBehaviour
 
     public CardPlacePoint assignedPoint;
 
+    public Animator animator;
+
     private void Start() {
         if(targetPoint == Vector3.zero) { 
             targetPoint = transform.position;
@@ -169,8 +171,12 @@ public class Card : MonoBehaviour
         if (currentHealth <= 0 ) {
             currentHealth = 0;
             assignedPoint.activeCard = null;
-            Destroy(gameObject);
+            MoveToPoint(BattleController.Instance.discardPoint.position, BattleController.Instance.discardPoint.rotation);
+            animator.SetTrigger("Jump");
+            Destroy(gameObject, 5f);
         }
+
+        animator.SetTrigger("Hurt");
     }
 
     public void UpdateCardDisplay() {
