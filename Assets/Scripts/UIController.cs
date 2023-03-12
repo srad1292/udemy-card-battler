@@ -20,6 +20,8 @@ public class UIController : MonoBehaviour
     public GameObject drawCardButton;
     public GameObject endTurnButton;
 
+    public UIDamageIndicator playerDamage;
+    public UIDamageIndicator enemyDamage;
 
     private void Awake() {
         if(Instance != null && Instance==this) {
