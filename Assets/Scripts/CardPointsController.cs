@@ -33,12 +33,41 @@ public class CardPointsController : MonoBehaviour
                 if (enemyCardPoints[idx].activeCard != null) {
                     // Attack enemy card
                     enemyCardPoints[idx].activeCard.DamageCard(playerCardPoints[idx].activeCard.attackPower);
-                    playerCardPoints[idx].activeCard.animator.SetTrigger("Attack");
                 }
                 else {
                     // Attack opponent
+                    BattleController.Instance.DamageEnemy(playerCardPoints[idx].activeCard.attackPower);
                 }
+                playerCardPoints[idx].activeCard.animator.SetTrigger("Attack");
+                yield return new WaitForSeconds(timeBetweenAttacks);
 
+            }
+        }
+
+        CheckAssignedCards();
+        BattleController.Instance.AdvanceTurn();
+    }
+
+    public void EnemyAttack() {
+        StartCoroutine(EnemyAttackCo());
+    }
+
+
+    IEnumerator EnemyAttackCo() {
+        yield return new WaitForSeconds(timeBetweenAttacks);
+
+        for (int idx = 0; idx < enemyCardPoints.Length; idx++) {
+            if (enemyCardPoints[idx].activeCard != null) {
+                if (playerCardPoints[idx].activeCard != null) {
+                    // Attack Player card
+                    playerCardPoints[idx].activeCard.DamageCard(enemyCardPoints[idx].activeCard.attackPower);
+
+                }
+                else {
+                    // Attack Player
+                    BattleController.Instance.DamagePlayer(enemyCardPoints[idx].activeCard.attackPower);
+                }
+                enemyCardPoints[idx].activeCard.animator.SetTrigger("Attack");
                 yield return new WaitForSeconds(timeBetweenAttacks);
 
             }

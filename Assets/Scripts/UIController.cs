@@ -9,6 +9,9 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
 
     public TMP_Text playerManaText;
+    public TMP_Text playerHealthText;
+    public TMP_Text enemyHealthText;
+
 
     public GameObject manaWarning;
     public float manaWarningTime;
@@ -38,6 +41,14 @@ public class UIController : MonoBehaviour
 
     public void SetPlayerManaText(int manaAmount) {
         playerManaText.text = "Mana: " + manaAmount;
+    }
+
+    public void SetPlayerHealthText(int hpAmount) {
+        playerHealthText.text = "P Health: " + hpAmount;
+    }
+
+    public void SetEnemyHealthText(int hpAmount) {
+        enemyHealthText.text = "E Health: " + hpAmount;
     }
 
     public void ShowManaWarning() {

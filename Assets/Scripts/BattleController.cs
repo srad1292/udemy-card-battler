@@ -17,6 +17,9 @@ public class BattleController : MonoBehaviour {
 
     private int currentPlayerMaxMana;
 
+    public int playerHealth;
+    public int enemyHealth;
+
 
     private void Awake() {
         if(Instance != null && Instance != this) {
@@ -29,6 +32,9 @@ public class BattleController : MonoBehaviour {
     private void Start() {
         currentPlayerMaxMana = startingMana;
         RefillPlayerMana();
+        UIController.Instance.SetPlayerHealthText(playerHealth);
+        UIController.Instance.SetEnemyHealthText(enemyHealth);
+
         DeckController.Instance.DrawMultipleCards(startCardAmount);
         currentPhase = TurnOrder.PlayerActive;
     }
@@ -61,7 +67,7 @@ public class BattleController : MonoBehaviour {
                 AdvanceTurn();
                 break;
             case TurnOrder.EnemyCardAttacks:
-                AdvanceTurn();
+                TransitionToEnemyAttack();
                 break;
             default:
                 break;
@@ -87,5 +93,33 @@ public class BattleController : MonoBehaviour {
         UIController.Instance.endTurnButton.SetActive(false);
         UIController.Instance.drawCardButton.SetActive(false);
         AdvanceTurn();
+    }
+
+    private void TransitionToEnemyAttack() {
+        CardPointsController.Instance.EnemyAttack();
+    }
+
+    public void DamagePlayer(int damageAmount) {
+        if(playerHealth > 0) {
+            playerHealth = Math.Max(playerHealth - damageAmount, 0);
+        
+            if(playerHealth == 0) {
+                // End battle
+            }
+
+            UIController.Instance.SetPlayerHealthText(playerHealth);
+        }
+
+    }
+
+    public void DamageEnemy(int damageAmount) {
+        if(enemyHealth > 0) {
+            enemyHealth = Math.Max(enemyHealth - damageAmount, 0);
+            if(enemyHealth == 0) {
+                // end battle
+            }
+
+            UIController.Instance.SetEnemyHealthText(enemyHealth);
+        }
     }
 }

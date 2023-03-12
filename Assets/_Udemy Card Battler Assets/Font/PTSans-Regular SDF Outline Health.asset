@@ -57,11 +57,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: PTSans-Regular SDF Outline Mana
+  m_Name: PTSans-Regular SDF Outline Health
   m_EditorClassIdentifier: 
-  hashCode: 1929683534
+  hashCode: 1597563345
   material: {fileID: 9000011346126585446}
-  materialHashCode: -1908695122
+  materialHashCode: -1427869359
   m_Version: 1.1.0
   m_SourceFontFileGUID: b1e9623501741964e8f2d755f0a46b93
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: b1e9623501741964e8f2d755f0a46b93,
@@ -871,7 +871,7 @@ Material:
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0, g: 0.012983897, b: 0.26415092, a: 1}
+    - _OutlineColor: {r: 0.46226418, g: 0.010902455, b: 0.049326763, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
