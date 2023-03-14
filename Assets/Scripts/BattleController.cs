@@ -64,7 +64,7 @@ public class BattleController : MonoBehaviour {
                 TransitionToPlayerAttack();
                 break;
             case TurnOrder.EnemyActive:
-                AdvanceTurn();
+                TransitionToEnemyActive();
                 break;
             case TurnOrder.EnemyCardAttacks:
                 TransitionToEnemyAttack();
@@ -74,6 +74,8 @@ public class BattleController : MonoBehaviour {
         }
 
     }
+
+    
 
     private void TransitionToPlayerActive() {
         UIController.Instance.endTurnButton.SetActive(true);
@@ -93,6 +95,10 @@ public class BattleController : MonoBehaviour {
         UIController.Instance.endTurnButton.SetActive(false);
         UIController.Instance.drawCardButton.SetActive(false);
         AdvanceTurn();
+    }
+
+    private void TransitionToEnemyActive() {
+        EnemyController.Instance.StartAction();
     }
 
     private void TransitionToEnemyAttack() {
