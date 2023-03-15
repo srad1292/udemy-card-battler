@@ -85,7 +85,7 @@ public class Card : MonoBehaviour
                 MoveToPoint(hit.point + new Vector3(0,2f,0), Quaternion.identity);
             }
 
-            if(Input.GetMouseButtonDown(1) && isPlayer) {
+            if(Input.GetMouseButtonDown(1) && isPlayer && BattleController.Instance.battleEnded == false) {
                 ReturnToHand();
             }
 
@@ -93,7 +93,7 @@ public class Card : MonoBehaviour
             // Input in Update fires after OnMouseDown
             // Need to toggle justPressed 
             // Which will allow the first click to pick it up without returning to hand
-            if(Input.GetMouseButtonDown(0) && !justPressed && isPlayer) {
+            if(Input.GetMouseButtonDown(0) && !justPressed && isPlayer && BattleController.Instance.battleEnded == false) {
                 if(Physics.Raycast(ray, out hit, 100f, placementLayer) && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
                     CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
                     if(selectedPoint.activeCard == null && selectedPoint.isPlayerPoint) {
@@ -136,19 +136,19 @@ public class Card : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if(inHand && isPlayer) {
+        if(inHand && isPlayer && BattleController.Instance.battleEnded == false) {
             MoveToPoint(handController.cardPositions[handPosition] + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
         }
     }
 
     private void OnMouseExit() {
-        if (inHand && isPlayer) {
+        if (inHand && isPlayer && BattleController.Instance.battleEnded == false) {
             MoveToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
         }
     }
 
     private void OnMouseDown() {
-        if (inHand && isPlayer && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive) {
+        if (inHand && isPlayer && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive && BattleController.Instance.battleEnded == false) {
             justPressed = true;
             isSelected = true;
             myCollider.enabled = false;

@@ -42,6 +42,10 @@ public class CardPointsController : MonoBehaviour
                 yield return new WaitForSeconds(timeBetweenAttacks);
 
             }
+
+            if (BattleController.Instance.battleEnded) {
+                idx = playerCardPoints.Length;
+            }
         }
 
         CheckAssignedCards();
@@ -70,6 +74,10 @@ public class CardPointsController : MonoBehaviour
                 enemyCardPoints[idx].activeCard.animator.SetTrigger("Attack");
                 yield return new WaitForSeconds(timeBetweenAttacks);
 
+            }
+
+            if (BattleController.Instance.battleEnded) {
+                idx = enemyCardPoints.Length;
             }
         }
 

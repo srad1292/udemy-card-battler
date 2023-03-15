@@ -22,6 +22,7 @@ public class BattleController : MonoBehaviour {
     public int playerHealth;
     public int enemyHealth;
 
+    public bool battleEnded;
 
     private void Awake() {
         if(Instance != null && Instance != this) {
@@ -64,6 +65,8 @@ public class BattleController : MonoBehaviour {
     }
 
     public void AdvanceTurn() {
+        if(battleEnded) { return; }
+
         currentPhase++;
 
         if((int)currentPhase >= Enum.GetValues(typeof(TurnOrder)).Length) {
@@ -124,11 +127,11 @@ public class BattleController : MonoBehaviour {
     }
 
     public void DamagePlayer(int damageAmount) {
-        if(playerHealth > 0) {
+        if(playerHealth > 0 || battleEnded == false) {
             playerHealth = Math.Max(playerHealth - damageAmount, 0);
         
             if(playerHealth == 0) {
-                // End battle
+                EndBattle();
             }
 
             UIController.Instance.SetPlayerHealthText(playerHealth);
@@ -140,10 +143,10 @@ public class BattleController : MonoBehaviour {
     }
 
     public void DamageEnemy(int damageAmount) {
-        if(enemyHealth > 0) {
+        if (enemyHealth > 0 || battleEnded == false) {
             enemyHealth = Math.Max(enemyHealth - damageAmount, 0);
             if(enemyHealth == 0) {
-                // end battle
+                EndBattle();
             }
 
             UIController.Instance.SetEnemyHealthText(enemyHealth);
@@ -151,5 +154,10 @@ public class BattleController : MonoBehaviour {
             damageClone.damageText.text = damageAmount.ToString();
             damageClone.gameObject.SetActive(true);
         }
+    }
+
+    void EndBattle() {
+        battleEnded = true;
+        HandController.Instance.EmptyHand();
     }
 }
