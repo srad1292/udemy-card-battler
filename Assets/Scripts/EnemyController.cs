@@ -77,10 +77,13 @@ public class EnemyController : MonoBehaviour
                 PlaceFromHandRandom();
                 break;
             case AIType.handDefensive:
+                PlaceDefensive();
                 break;
             case AIType.handAttacking:
+                PlaceOffensive();
                 break;
             default:
+                PlaceOffensive();
                 break;
         }
 
@@ -100,9 +103,8 @@ public class EnemyController : MonoBehaviour
     }
 
     private CardPlacePoint SelectRandomPlacePoint() {
-        List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
-        cardPoints.AddRange(CardPointsController.Instance.enemyCardPoints);
 
+        List<CardPlacePoint> cardPoints = GetCardPointsCopy();
         int randomPoint = Random.Range(0, cardPoints.Count);
         CardPlacePoint selectedPoint = cardPoints[randomPoint];
         cardPoints.RemoveAt(randomPoint);
@@ -113,6 +115,12 @@ public class EnemyController : MonoBehaviour
         }
 
         return selectedPoint;
+    }
+
+    List<CardPlacePoint> GetCardPointsCopy() {
+        List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
+        cardPoints.AddRange(CardPointsController.Instance.enemyCardPoints);
+        return cardPoints;
     }
 
     void PlaceCard(CardSO cardSO, CardPlacePoint selectedPoint) {
@@ -139,7 +147,11 @@ public class EnemyController : MonoBehaviour
             }
         } while (canPlaceACard);
 
-        while(BattleController.Instance.enemyMana >= drawCardCost) {
+        DrawWhileManaRemains();
+    }
+
+    void DrawWhileManaRemains() {
+        while (BattleController.Instance.enemyMana >= drawCardCost) {
             DrawCardWithManaCost();
         }
     }
@@ -163,6 +175,66 @@ public class EnemyController : MonoBehaviour
 
         return null;
     }
+
+    void PlaceDefensive() {
+        List<CardPlacePoint> cardPoints = GetCardPointsCopy();
+
+        List<CardPlacePoint> preferredPoints = new List<CardPlacePoint>();
+        List<CardPlacePoint> secondaryPoints = new List<CardPlacePoint>();
+        BuildPreferredAndSecondayPoints(cardPoints, preferredPoints, secondaryPoints);
+        PlaceWithLogic(preferredPoints, secondaryPoints);
+        DrawWhileManaRemains();
+    }
+
+    void PlaceWithLogic(List<CardPlacePoint> preferredPoints, List<CardPlacePoint> secondaryPoints) {
+        bool canPlaceACard = false;
+        do {
+            CardSO selectedCard = SelectRandomCardInHand();
+
+            canPlaceACard = selectedCard != null && (preferredPoints.Count + secondaryPoints.Count > 0);
+            if (canPlaceACard) {
+                if (preferredPoints.Count > 0) {
+                    int selectedPoint = Random.Range(0, preferredPoints.Count);
+                    PlaceCard(selectedCard, preferredPoints[selectedPoint]);
+                    cardsInHand.Remove(selectedCard);
+                    preferredPoints.RemoveAt(selectedPoint);
+                }
+                else {
+                    int selectedPoint = Random.Range(0, secondaryPoints.Count);
+                    PlaceCard(selectedCard, secondaryPoints[selectedPoint]);
+                    cardsInHand.Remove(selectedCard);
+                    secondaryPoints.RemoveAt(selectedPoint);
+                }
+
+
+            }
+
+        } while (canPlaceACard);
+    }
+
+    void BuildPreferredAndSecondayPoints(List<CardPlacePoint> cardPoints, List<CardPlacePoint> playerPoints, List<CardPlacePoint> emptyPoints) {
+        for (int idx = 0; idx < cardPoints.Count; idx++) {
+            if (cardPoints[idx].activeCard == null) {
+                if (CardPointsController.Instance.playerCardPoints[idx].activeCard != null) {
+                    playerPoints.Add(cardPoints[idx]);
+                }
+                else {
+                    emptyPoints.Add(cardPoints[idx]);
+                }
+            }
+        }
+    }
+
+    void PlaceOffensive() {
+        List<CardPlacePoint> cardPoints = GetCardPointsCopy();
+        List<CardPlacePoint> preferredPoints = new List<CardPlacePoint>();
+        List<CardPlacePoint> secondaryPoints = new List<CardPlacePoint>();
+        BuildPreferredAndSecondayPoints(cardPoints, secondaryPoints, preferredPoints);
+        PlaceWithLogic(preferredPoints, secondaryPoints);
+        DrawWhileManaRemains();
+    }
+
+
 
     private void SetupHand() {
         for(int idx = 0; idx < startHandSize; idx++) {

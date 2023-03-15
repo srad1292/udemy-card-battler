@@ -4547,8 +4547,9 @@ MonoBehaviour:
   cardToSpawn: {fileID: 1589009623895225551, guid: a59d5a279765abc40b46c1a9842f22e2,
     type: 3}
   cardSpawnPoint: {fileID: 1458366210}
-  enemyAIType: 1
+  enemyAIType: 3
   startHandSize: 5
+  drawCardCost: 2
 --- !u!1 &2132214614
 GameObject:
   m_ObjectHideFlags: 0
