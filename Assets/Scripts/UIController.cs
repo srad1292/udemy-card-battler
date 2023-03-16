@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
@@ -26,6 +27,9 @@ public class UIController : MonoBehaviour
     public UIDamageIndicator enemyDamage;
 
     public GameObject battleEndScreen;
+
+    public string mainMenuScene;
+    public string battleSelectScene;
 
 
     private void Awake() {
@@ -80,14 +84,14 @@ public class UIController : MonoBehaviour
     }
 
     public void GoToMainMenu() {
-
+        SceneManager.LoadScene(mainMenuScene);
     }
 
     public void RestartLevel() {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ChooseNewBattle() {
-
+        SceneManager.LoadScene(battleSelectScene);
     }
 }

@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa96108ca12adf46860aec84b0f2c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleSelectScene: Battle
+  battleSelectScene: BattleSelect
 --- !u!1 &277005003
 GameObject:
   m_ObjectHideFlags: 0

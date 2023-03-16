@@ -2097,6 +2097,8 @@ MonoBehaviour:
   playerDamage: {fileID: 3998006179384749548}
   enemyDamage: {fileID: 3998006179732822704}
   battleEndScreen: {fileID: 3998006179186434575}
+  mainMenuScene: MainMenu
+  battleSelectScene: BattleSelect
 --- !u!1 &3998006180728790072
 GameObject:
   m_ObjectHideFlags: 0
