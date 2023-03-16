@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class BattleController : MonoBehaviour {
@@ -23,6 +24,8 @@ public class BattleController : MonoBehaviour {
     public int enemyHealth;
 
     public bool battleEnded;
+
+    public float resultScreenDelay = 1.2f;
 
     private void Awake() {
         if(Instance != null && Instance != this) {
@@ -159,5 +162,28 @@ public class BattleController : MonoBehaviour {
     void EndBattle() {
         battleEnded = true;
         HandController.Instance.EmptyHand();
+        if(enemyHealth == 0) {
+            UIController.Instance.battleResultText.text = "You Won!";
+            foreach(CardPlacePoint point in CardPointsController.Instance.enemyCardPoints) {
+                if(point.activeCard != null) {
+                    point.activeCard.MoveToPoint(discardPoint.position, point.activeCard.transform.rotation);
+                }
+            }
+        }
+        else {
+            UIController.Instance.battleResultText.text = "You Lose.";
+            foreach (CardPlacePoint point in CardPointsController.Instance.playerCardPoints) {
+                if (point.activeCard != null) {
+                    point.activeCard.MoveToPoint(discardPoint.position, point.activeCard.transform.rotation);
+                }
+            }
+        }
+        StartCoroutine(ShowResultCO());
+    }
+
+    IEnumerator ShowResultCO() {
+        yield return new WaitForSeconds(resultScreenDelay);
+        UIController.Instance.battleEndScreen.SetActive(true);
+
     }
 }

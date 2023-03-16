@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     public TMP_Text playerHealthText;
     public TMP_Text enemyHealthText;
     public TMP_Text enemyManaText;
+    public TMP_Text battleResultText;
 
 
     public GameObject manaWarning;
@@ -23,6 +24,9 @@ public class UIController : MonoBehaviour
 
     public UIDamageIndicator playerDamage;
     public UIDamageIndicator enemyDamage;
+
+    public GameObject battleEndScreen;
+
 
     private void Awake() {
         if(Instance != null && Instance==this) {
@@ -73,5 +77,17 @@ public class UIController : MonoBehaviour
 
     public void EndPlayerTurn() {
         BattleController.Instance.EndPlayerTurn();
+    }
+
+    public void GoToMainMenu() {
+
+    }
+
+    public void RestartLevel() {
+
+    }
+
+    public void ChooseNewBattle() {
+
     }
 }

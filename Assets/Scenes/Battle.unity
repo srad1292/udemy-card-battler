@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 12062791}
   - component: {fileID: 12062790}
   m_Layer: 5
-  m_Name: Main Menu (1)
+  m_Name: Play Again
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 803028034}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: EndPlayerTurn
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1366,6 +1366,7 @@ MonoBehaviour:
   playerHealth: 10
   enemyHealth: 10
   battleEnded: 0
+  resultScreenDelay: 1.2
 --- !u!4 &600712330
 Transform:
   m_ObjectHideFlags: 0
@@ -1935,12 +1936,14 @@ MonoBehaviour:
   playerHealthText: {fileID: 605867594}
   enemyHealthText: {fileID: 1873936896}
   enemyManaText: {fileID: 830366204}
+  battleResultText: {fileID: 208295324}
   manaWarning: {fileID: 814189203}
   manaWarningTime: 2
   drawCardButton: {fileID: 1171764376}
   endTurnButton: {fileID: 1152439117}
   playerDamage: {fileID: 1720827516}
   enemyDamage: {fileID: 1515211040}
+  battleEndScreen: {fileID: 2057548191}
 --- !u!114 &803028035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2353,7 +2356,7 @@ GameObject:
   - component: {fileID: 851010130}
   - component: {fileID: 851010129}
   m_Layer: 5
-  m_Name: Main Menu (2)
+  m_Name: Select New Battle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2427,7 +2430,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 803028034}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: EndPlayerTurn
+        m_MethodName: ChooseNewBattle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4750,7 +4753,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 803028034}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: EndPlayerTurn
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5468,7 +5471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.5407715, y: -0.91607666}
+  m_AnchoredPosition: {x: 1.5407715, y: -0.9160156}
   m_SizeDelta: {x: -24.9185, y: -22.1677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057548193
