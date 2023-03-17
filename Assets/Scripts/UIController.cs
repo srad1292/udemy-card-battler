@@ -28,6 +28,8 @@ public class UIController : MonoBehaviour
 
     public GameObject battleEndScreen;
 
+    public GameObject pauseMenu;
+
     public string mainMenuScene;
     public string battleSelectScene;
 
@@ -47,6 +49,10 @@ public class UIController : MonoBehaviour
             if(manaWarningCounter <= 0) {
                 manaWarning.SetActive(false);
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            PauseUnpause();
         }
     }
 
@@ -84,14 +90,33 @@ public class UIController : MonoBehaviour
     }
 
     public void GoToMainMenu() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuScene);
     }
 
     public void RestartLevel() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ChooseNewBattle() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(battleSelectScene);
+    }
+
+    public void Resume() {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void PauseUnpause() {
+        bool isPaused = pauseMenu.activeSelf;
+        if(isPaused) {
+            Resume();
+        }
+        else {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 }

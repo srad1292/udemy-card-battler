@@ -78,7 +78,7 @@ public class Card : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
 
-        if(isSelected) {
+        if(isSelected && BattleController.Instance.battleEnded == false && Time.timeScale != 0f) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f, desktopLayer) && isPlayer) {
@@ -136,7 +136,7 @@ public class Card : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if(inHand && isPlayer && BattleController.Instance.battleEnded == false) {
+        if(inHand && isPlayer && BattleController.Instance.battleEnded == false && Time.timeScale != 0f) {
             MoveToPoint(handController.cardPositions[handPosition] + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
         }
     }
@@ -148,7 +148,7 @@ public class Card : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        if (inHand && isPlayer && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive && BattleController.Instance.battleEnded == false) {
+        if (inHand && isPlayer && BattleController.Instance.currentPhase == BattleController.TurnOrder.PlayerActive && BattleController.Instance.battleEnded == false && Time.timeScale != 0f) {
             justPressed = true;
             isSelected = true;
             myCollider.enabled = false;

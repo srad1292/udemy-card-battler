@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BattleController : MonoBehaviour {
 
@@ -26,6 +27,9 @@ public class BattleController : MonoBehaviour {
     public bool battleEnded;
 
     public float resultScreenDelay = 1.2f;
+    
+    [Range(0f,1f)]
+    public float playerFirstChance = 0.5f;
 
     private void Awake() {
         if(Instance != null && Instance != this) {
@@ -44,7 +48,13 @@ public class BattleController : MonoBehaviour {
         UIController.Instance.SetEnemyHealthText(enemyHealth);
 
         DeckController.Instance.DrawMultipleCards(startCardAmount);
-        currentPhase = TurnOrder.PlayerActive;
+
+        if(Random.value > playerFirstChance) {
+            currentPhase = TurnOrder.PlayerActive;
+        } else {
+            currentPhase = TurnOrder.PlayerCardAttacks;
+            AdvanceTurn();
+        }
     }
 
     public void SpendPlayerMana(int amount) {
