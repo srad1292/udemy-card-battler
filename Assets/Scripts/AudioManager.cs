@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public enum SfxTrack { ButtonPress, CardAttack, CardDefeat, CardDraw, CardPlace, HurtEnemy, HurtPlayer };
 
     public AudioSource menuMusic;
     public AudioSource battleSelectMusic;
     public AudioSource[] soundtrack;
+    public AudioSource[] sfx;
+
+    private int currentTrack;
+    private bool playingSoundTrack;
+
     
     public static AudioManager Instance;
 
@@ -18,7 +24,18 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
 
+    private void Update() {
+        if(playingSoundTrack) {
+            if(soundtrack[currentTrack].isPlaying == false) {
+                currentTrack++;
+                if(currentTrack >= soundtrack.Length) {
+                    currentTrack = 0;
+                }
+                soundtrack[currentTrack].Play();
+            }
+        }
     }
 
     public void StopMusic() {
@@ -27,6 +44,7 @@ public class AudioManager : MonoBehaviour
         foreach(AudioSource track in soundtrack) {
             track.Stop();
         }
+        playingSoundTrack = false;
     }
 
     public void PlayMenuMusic() {
@@ -44,6 +62,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySoundtrackMusic() {
         StopMusic();
-        //soundtrack[Random.Range(0, soundtrack.Length)].Play();
+        currentTrack = Random.Range(0, soundtrack.Length);
+        soundtrack[currentTrack].Play();
+        playingSoundTrack = true;
+        
+        currentTrack++;
+    }
+
+    public void PlaySFX(SfxTrack sfxToPlay) {
+        int sfxNum = (int)sfxToPlay;
+        sfx[sfxNum].Stop();
+        sfx[sfxNum].Play();
     }
 }

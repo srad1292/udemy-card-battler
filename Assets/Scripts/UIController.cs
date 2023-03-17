@@ -83,25 +83,30 @@ public class UIController : MonoBehaviour
 
     public void DrawCard() {
         DeckController.Instance.DrawCardWithMana();
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
     }
 
     public void EndPlayerTurn() {
         BattleController.Instance.EndPlayerTurn();
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
     }
 
     public void GoToMainMenu() {
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuScene);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
     }
 
     public void RestartLevel() {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
     }
 
     public void ChooseNewBattle() {
         Time.timeScale = 1f;
         SceneManager.LoadScene(battleSelectScene);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
     }
 
     public void Resume() {
@@ -111,7 +116,9 @@ public class UIController : MonoBehaviour
 
     public void PauseUnpause() {
         bool isPaused = pauseMenu.activeSelf;
-        if(isPaused) {
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
+
+        if (isPaused) {
             Resume();
         }
         else {

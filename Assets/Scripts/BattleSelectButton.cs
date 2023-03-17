@@ -11,6 +11,7 @@ public class BattleSelectButton : MonoBehaviour
     }
 
     public void SelectBattle() {
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
         SceneManager.LoadScene(levelToLoad);
     }
 }

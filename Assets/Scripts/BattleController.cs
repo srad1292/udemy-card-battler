@@ -55,6 +55,8 @@ public class BattleController : MonoBehaviour {
             currentPhase = TurnOrder.PlayerCardAttacks;
             AdvanceTurn();
         }
+
+        AudioManager.Instance.PlaySoundtrackMusic();
     }
 
     public void SpendPlayerMana(int amount) {
@@ -142,8 +144,10 @@ public class BattleController : MonoBehaviour {
     public void DamagePlayer(int damageAmount) {
         if(playerHealth > 0 || battleEnded == false) {
             playerHealth = Math.Max(playerHealth - damageAmount, 0);
-        
-            if(playerHealth == 0) {
+            AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.HurtPlayer);
+
+
+            if (playerHealth == 0) {
                 EndBattle();
             }
 
@@ -158,7 +162,9 @@ public class BattleController : MonoBehaviour {
     public void DamageEnemy(int damageAmount) {
         if (enemyHealth > 0 || battleEnded == false) {
             enemyHealth = Math.Max(enemyHealth - damageAmount, 0);
-            if(enemyHealth == 0) {
+            AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.HurtEnemy);
+
+            if (enemyHealth == 0) {
                 EndBattle();
             }
 

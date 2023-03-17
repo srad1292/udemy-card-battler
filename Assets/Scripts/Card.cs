@@ -122,6 +122,8 @@ public class Card : MonoBehaviour
         selectedPoint.activeCard = this;
         assignedPoint = selectedPoint;
         MoveToPoint(selectedPoint.transform.position, Quaternion.identity);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.CardPlace);
+
     }
 
     private void RemoveFromHand() {
@@ -169,11 +171,14 @@ public class Card : MonoBehaviour
         currentHealth -= damageAmount;
         UpdateCardDisplay();
         if (currentHealth <= 0 ) {
+            AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.CardDefeat);
             currentHealth = 0;
             assignedPoint.activeCard = null;
             MoveToPoint(BattleController.Instance.discardPoint.position, BattleController.Instance.discardPoint.rotation);
             animator.SetTrigger("Jump");
             Destroy(gameObject, 5f);
+        } else {
+            AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.CardAttack);
         }
 
         animator.SetTrigger("Hurt");

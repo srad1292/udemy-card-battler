@@ -12,9 +12,11 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame() {
         SceneManager.LoadScene(battleSelectScene);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
     }
 
     public void QuitGame() {
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.ButtonPress);
         Application.Quit();
     }
 }

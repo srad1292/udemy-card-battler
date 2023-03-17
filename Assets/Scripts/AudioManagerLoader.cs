@@ -8,7 +8,8 @@ public class AudioManagerLoader : MonoBehaviour
 
     private void Awake() {
         if(FindObjectOfType<AudioManager>() == null) {
-            Instantiate(audioManager);
+            AudioManager.Instance = Instantiate(audioManager);
+            DontDestroyOnLoad(AudioManager.Instance.gameObject);
         }
     }
 

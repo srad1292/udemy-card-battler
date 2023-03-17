@@ -54,6 +54,8 @@ public class DeckController : MonoBehaviour
         activeCards.RemoveAt(0);
 
         HandController.Instance.AddCardToHand(newCard);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.CardDraw);
+
     }
 
 

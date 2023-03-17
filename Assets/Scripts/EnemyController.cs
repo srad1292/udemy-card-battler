@@ -134,6 +134,7 @@ public class EnemyController : MonoBehaviour
         selectedPoint.activeCard = newCard;
         newCard.assignedPoint = selectedPoint;
         BattleController.Instance.SpendEnemyMana(cardSO.manaCost);
+        AudioManager.Instance.PlaySFX(AudioManager.SfxTrack.CardPlace);
     }
 
     void PlaceFromHandRandom() {
