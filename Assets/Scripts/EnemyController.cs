@@ -16,15 +16,18 @@ public class EnemyController : MonoBehaviour
     private List<CardSO> cardsInHand = new List<CardSO>();
     public int startHandSize;
 
-    public static EnemyController Instance;
-
     public int drawCardCost = 2;
 
+
+    public static EnemyController Instance;
+
+
     private void Awake() {
-        if(Instance != null && Instance == this) {
+        if(Instance != null && Instance != this) {
             Destroy(this);
+        } else {
+            Instance = this;
         }
-        Instance = this;
     }
 
     private void Start() {

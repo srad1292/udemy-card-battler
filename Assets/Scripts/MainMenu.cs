@@ -6,6 +6,10 @@ public class MainMenu : MonoBehaviour
 
     public string battleSelectScene = "BattleSelect";
 
+    private void Start() {
+        AudioManager.Instance.PlayMenuMusic();
+    }
+
     public void StartGame() {
         SceneManager.LoadScene(battleSelectScene);
     }

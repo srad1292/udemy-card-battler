@@ -14,7 +14,7 @@ public class HandController : MonoBehaviour
     public static HandController Instance;
 
     private void Awake() {
-        if (Instance != null && Instance == this) {
+        if (Instance != null && Instance != this) {
             Destroy(this);
         }
         else {

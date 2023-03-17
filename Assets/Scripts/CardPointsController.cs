@@ -12,7 +12,7 @@ public class CardPointsController : MonoBehaviour
     public float timeBetweenAttacks = 0.3f;
 
     private void Awake() {
-        if (Instance != null && Instance == this) {
+        if (Instance != null && Instance != this) {
             Destroy(this);
         }
         else {
